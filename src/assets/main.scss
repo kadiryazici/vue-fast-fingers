@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: 'Secular One', sans-serif;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+}
+
+:root {
+  --accent: 255, 228, 196;
+  --correct: 30, 173, 0;
+  --wrong: 220, 30, 30;
+  --black: 0, 0, 0;
+  --white: 255, 255, 255;
+}
+
+
+#app {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgb(var(--accent));
+}

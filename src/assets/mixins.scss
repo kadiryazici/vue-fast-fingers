@@ -1,0 +1,5 @@
+@mixin focus-visible {
+  &:focus-visible {
+    box-shadow: 0px 0px 0px 2px rgb(var(--white)), 0px 0px 0px 5px rgb(var(--black));
+  }
+}
