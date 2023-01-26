@@ -5,12 +5,14 @@ import { WordStatus } from '@/constants'
 interface Props {
   word: string
   status: WordStatus
-  highlighted: boolean
+  highlighted?: boolean
+  highlightedWrong?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
   status: WordStatus.None,
   highlighted: false,
+  highlightedWrong: false,
 })
 
 const element = ref<HTMLElement>()
@@ -32,7 +34,8 @@ watchPostEffect(() => {
     :class="{
       'word-correct': status === WordStatus.Correct,
       'word-wrong': status === WordStatus.Wrong,
-      'word-highlighted': highlighted,
+      'word-highlighted': highlighted && !highlightedWrong,
+      'word-highlighted-wrong': highlightedWrong,
     }"
   >{{ word }}</span>
 </template>
@@ -46,6 +49,11 @@ watchPostEffect(() => {
   &-highlighted {
     background-color: rgb(var(--accent));
     color: rgb(var(--black));
+
+    &-wrong {
+      background-color: rgb(var(--wrong));
+      color: rgb(var(--white));
+    }
   }
 
   &-correct {

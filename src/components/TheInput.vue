@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
 import { useAppStore } from '@/stores/appStore'
 
 interface Props {
@@ -17,29 +16,25 @@ const props = withDefaults(defineProps<Props>(), {
 })
 const emit = defineEmits<Emits>()
 
-const input = ref('')
+const appStore = useAppStore()
 
 function handleConfirm() {
-  emit('confirm', input.value)
-  input.value = ''
+  emit('confirm', appStore.input)
+  appStore.input = ''
 }
 
 function handleKeydown(e: KeyboardEvent) {
   if (e.code === 'Spacebar' || e.code === 'Space' || e.code === 'Enter' || e.code === 'NumpadEnter') {
     e.preventDefault()
-    if (input.value.trim().length > 0)
+    if (appStore.input.trim().length > 0)
       handleConfirm()
   }
 }
-
-defineExpose({
-  clear() { input.value = '' },
-})
 </script>
 
 <template>
   <input
-    v-model.trim="input"
+    v-model.trim="appStore.input"
     :placeholder="props.placeholder"
     :disabled="props.disabled || undefined"
     :class="{ disabled: props.disabled }"

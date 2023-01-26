@@ -9,7 +9,7 @@ import TheDrawer, { DrawerPosition } from './TheDrawer.vue'
 import TheButton from './TheButton.vue'
 import HistoryDrawerContent from './HistoryDrawerContent.vue'
 import { useAppStore } from '@/stores/appStore'
-import { ColorCSSVars, WordStatus } from '@/constants'
+import { ColorCSSVars, IconComponents, WordStatus } from '@/constants'
 import { Timer } from '@/utils/timer'
 import { count } from '@/utils/count'
 import type { Option } from '@/types'
@@ -51,7 +51,7 @@ function reset(withNewWords = false) {
   appStore.wordStatuses = []
   timer.reset()
   focusToInput()
-  inputInstance.value?.clear()
+  appStore.input = ''
 
   if (withNewWords)
     appStore.allWords = randomWords(400)
@@ -86,7 +86,7 @@ function focusToInput() {
 onMounted(focusToInput)
 
 useKey('alt+r', () => {
-  reset()
+  reset(true)
 }, { input: true, prevent: true })
 
 useKey('alt+h', () => {
@@ -130,6 +130,9 @@ useKey('alt+h', () => {
 
   <div class="flex gap-7px flex-row flex-nowrap">
     <TheButton @click="historyDrawerVisible = true">
+      <template #icon>
+        <IconComponents.History />
+      </template>
       History
     </TheButton>
 
@@ -138,6 +141,9 @@ useKey('alt+h', () => {
       class="ml-auto"
       @click="reset(true)"
     >
+      <template #icon>
+        <IconComponents.Reset />
+      </template>
       Reset
     </TheButton>
   </div>

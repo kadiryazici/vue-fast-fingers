@@ -12,6 +12,7 @@ export const useAppStore = defineStore('counter', () => {
   const currentWordIndex = ref(0)
   const started = ref(false)
   const ended = ref(false)
+  const input = ref('')
 
   const drawers = reactive<{
     id: string
@@ -43,6 +44,7 @@ export const useAppStore = defineStore('counter', () => {
     wordStatuses,
     currentWordIndex,
     drawers,
+    input,
     showDrawer,
     closeDrawer,
   }

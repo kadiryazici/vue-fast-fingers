@@ -3,6 +3,15 @@ import TheWord from './TheWord.vue'
 import { useAppStore } from '@/stores/appStore'
 
 const appStore = useAppStore()
+
+function isHighlightedWrong(index: number) {
+  if (appStore.currentWordIndex !== index)
+    return false
+
+  return !appStore
+    .allWords[index]
+    .startsWith(appStore.input)
+}
 </script>
 
 <template>
@@ -13,6 +22,7 @@ const appStore = useAppStore()
         :key="`${word}${index}`"
         :word="word"
         :highlighted="appStore.currentWordIndex === index"
+        :highlightedWrong="isHighlightedWrong(index)"
         :status="appStore.wordStatuses[index]"
       />
     </div>

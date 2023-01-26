@@ -1,3 +1,9 @@
+import { markRaw } from 'vue'
+
+import HistoryIcon from '~icons/ic/twotone-history'
+import ResetIcon from '~icons/ic/baseline-restart-alt'
+import CleanIcon from '~icons/ic/baseline-cleaning-services'
+
 export enum WordStatus {
   Wrong,
   Correct,
@@ -10,4 +16,10 @@ export enum ColorCSSVars {
   White = 'var(--white)',
   Correct = 'var(--correct)',
   Wrong = 'var(--wrong)',
+}
+
+export const IconComponents = {
+  History: markRaw(HistoryIcon),
+  Reset: markRaw(ResetIcon),
+  Clean: markRaw(CleanIcon),
 }

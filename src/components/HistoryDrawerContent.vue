@@ -3,7 +3,7 @@ import { shallowRef } from 'vue'
 import TheHeading from './TheHeading.vue'
 import TheButton, { ButtonColors } from './TheButton.vue'
 import { type TestHistoryItem, historyDb } from '@/utils/db'
-import { ColorCSSVars } from '@/constants'
+import { ColorCSSVars, IconComponents } from '@/constants'
 import { Timer } from '@/utils/timer'
 
 const historyItems = shallowRef(await Promise.all(
@@ -31,6 +31,9 @@ async function clear() {
       :color="ButtonColors.Accent"
       @click="clear"
     >
+      <template #icon>
+        <IconComponents.Clean />
+      </template>
       Clear
     </TheButton>
   </div>

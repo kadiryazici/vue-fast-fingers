@@ -17,17 +17,27 @@ const props = withDefaults(defineProps<Props>(), {
 
 <template>
   <button
+    class="button"
     :class="{
       'button-accent': props.color === ButtonColors.Accent,
       'button-black': props.color === ButtonColors.Black,
     }"
   >
-    <slot />
+    <span
+      v-if="$slots.icon != null"
+      class="button-icon"
+    >
+      <slot name="icon" />
+    </span>
+
+    <span class="button-content">
+      <slot />
+    </span>
   </button>
 </template>
 
 <style lang="scss" scoped>
-button {
+.button {
   padding: 10px;
   transition: transform .2s ease;
   font-size: 16px;
@@ -35,6 +45,8 @@ button {
   border: none;
   border-radius: 10px;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
 
   @include focus-visible();
 
@@ -54,6 +66,15 @@ button {
 
   &:active {
     transform: scale(.9);
+  }
+
+  &-icon {
+    margin-right: 6px;
+
+    :deep(.icon) {
+      font-size: 20px;
+      vertical-align: middle;
+    }
   }
 }
 </style>
