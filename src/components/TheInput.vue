@@ -26,6 +26,7 @@ function handleConfirm() {
 function handleKeydown(e: KeyboardEvent) {
   if (e.code === 'Spacebar' || e.code === 'Space' || e.code === 'Enter' || e.code === 'NumpadEnter') {
     e.preventDefault()
+
     if (appStore.input.trim().length > 0)
       handleConfirm()
   }
